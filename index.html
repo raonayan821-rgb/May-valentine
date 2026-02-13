@@ -3,64 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Proposal</title>
+    <title>Valentine Proposal</title>
     <style>
-        body { text-align: center; font-family: 'Arial', sans-serif; background-color: #ffe6e6; padding: 20px; overflow-x: hidden; }
-        .container { max-width: 400px; margin: auto; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        img { width: 100%; border-radius: 20px; margin-bottom: 20px; min-height: 250px; object-fit: contain; }
-        h1 { color: #ff4d4d; font-size: 24px; min-height: 80px; }
-        .buttons { margin-top: 20px; position: relative; height: 250px; }
-        button { font-size: 18px; padding: 12px 30px; cursor: pointer; border-radius: 12px; border: none; font-weight: bold; transition: 0.3s; }
-        #yesBtn { background-color: #4CAF50; color: white; }
-        #noBtn { background-color: #f44336; color: white; position: absolute; left: 50%; transform: translateX(-50%); }
+        body { text-align: center; font-family: sans-serif; background-color: #ffe6e6; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        .container { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 90%; max-width: 400px; position: relative; }
+        img { width: 100%; height: 250px; object-fit: contain; border-radius: 10px; }
+        h1 { color: #ff4d4d; font-size: 22px; height: 60px; }
+        .btn-group { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
+        button { font-size: 18px; padding: 10px 25px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        #yesBtn { background-color: #4CAF50; color: white; position: relative; z-index: 10; }
+        #noBtn { background-color: #f44336; color: white; position: absolute; transition: 0.1s; }
     </style>
 </head>
 <body>
 
-    <div id="content" class="container">
-        <img id="mainGif" src="image1.gif" alt="Valentine">
-        <h1 id="text">Will you be my Valentine? ❤️</h1>
-        
-        <div class="buttons">
-            <button id="yesBtn" onclick="ansYes()">YES</button>
-            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">NO</button>
-        </div>
+<div class="container" id="mainBox">
+    <img id="displayGif" src="image1.gif">
+    <h1 id="mainText">Will you be my Valentine? ❤️</h1>
+    <div class="btn-group">
+        <button id="yesBtn" onclick="sayYes()">YES</button>
+        <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">NO</button>
     </div>
+</div>
 
-    <script>
-        let noCount = 0;
-        
-        // English messages for each 'No' attempt using your images
-        const responses = [
-            { text: "Please don't say NO! My heart.... 💔", gif: "image2.gif" },
-            { text: "Are you really sure? Think again! 🥺", gif: "image3.gif" },
-            { text: "I'm going to be very sad... 😭😭", gif: "image4.gif" },
-            { text: "You are breaking my heart... 💔", gif: "image5.gif" },
-            { text: "Last chance! Please say Yes! ✨", gif: "image6.gif" }
-        ];
+<script>
+    let noCount = 0;
+    // यहाँ आपके 4-5 अलग-अलग GIFs और मैसेज सेट हैं
+    const responses = [
+        { text: "Please don't say NO! My heart.... 💔", gif: "image2.gif" },
+        { text: "Are you really sure? Think again! 🥺", gif: "image3.gif" },
+        { text: "I'm going to be very sad... 😭😭", gif: "image4.gif" },
+        { text: "You are breaking my heart... 💔", gif: "image5.gif" },
+        { text: "Last chance! Please say Yes! ✨", gif: "image6.gif" }
+    ];
 
-        function moveButton() {
-            var x = Math.random() * (window.innerWidth - 120);
-            var y = Math.random() * (window.innerHeight - 250);
-            var btn = document.getElementById('noBtn');
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
-            
-            if (noCount < responses.length) {
-                document.getElementById('mainGif').src = responses[noCount].gif;
-                document.getElementById('text').innerHTML = responses[noCount].text;
-                noCount++;
-            }
+    function moveNo() {
+        // बटन को भगाने का लॉजिक
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+        const noBtn = document.getElementById('noBtn');
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+
+        // GIF और मैसेज बदलना
+        if (noCount < responses.length) {
+            document.getElementById('displayGif').src = responses[noCount].gif;
+            document.getElementById('mainText').innerText = responses[noCount].text;
+            noCount++;
         }
+    }
 
-        function ansYes() {
-            // Success screen with image7.gif
-            document.getElementById('content').innerHTML = `
-                <img src="image7.gif">
-                <h1 style="color: #e91e63;">I ABSOLUTELY KNEW IT!<br>I LOVE YOU! 🥰❤️</h1>
-                <p style="font-size: 18px; color: #555;">You just made me the happiest person! ✨</p>
-            `;
-        }
-    </script>
+    function sayYes() {
+        document.getElementById('mainBox').innerHTML = `
+            <img src="image7.gif">
+            <h1 style="color: #e91e63;">I ABSOLUTELY KNEW IT!<br>I LOVE YOU! 🥰❤️</h1>
+            <p>You made me the happiest person in the world! ✨</p>
+        `;
+    }
+</script>
+
 </body>
 </html>
