@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,13 +6,13 @@
     <title>Valentine Proposal</title>
     <style>
         body { text-align: center; font-family: sans-serif; background-color: #ffe6e6; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
-        .container { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 90%; max-width: 400px; position: relative; }
-        img { width: 100%; height: 250px; object-fit: contain; border-radius: 10px; }
-        h1 { color: #ff4d4d; font-size: 22px; height: 60px; }
-        .btn-group { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
-        button { font-size: 18px; padding: 10px 25px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.2s; }
-        #yesBtn { background-color: #4CAF50; color: white; position: relative; z-index: 10; }
-        #noBtn { background-color: #f44336; color: white; position: absolute; transition: 0.1s; }
+        .container { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 85%; max-width: 350px; position: relative; z-index: 1; }
+        img { width: 100%; height: 200px; object-fit: contain; border-radius: 10px; }
+        h1 { color: #ff4d4d; font-size: 20px; height: 50px; margin: 15px 0; }
+        .btn-group { display: flex; justify-content: center; gap: 20px; margin-top: 10px; min-height: 50px; }
+        button { font-size: 16px; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+        #yesBtn { background-color: #4CAF50; color: white; }
+        #noBtn { background-color: #f44336; color: white; position: relative; transition: 0.1s; }
     </style>
 </head>
 <body>
@@ -28,8 +28,7 @@
 
 <script>
     let noCount = 0;
-    // यहाँ आपके 4-5 अलग-अलग GIFs और मैसेज सेट हैं
-    const responses = [
+    const data = [
         { text: "Please don't say NO! My heart.... 💔", gif: "image2.gif" },
         { text: "Are you really sure? Think again! 🥺", gif: "image3.gif" },
         { text: "I'm going to be very sad... 😭😭", gif: "image4.gif" },
@@ -38,18 +37,19 @@
     ];
 
     function moveNo() {
-        // बटन को भगाने का लॉजिक
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 100);
         const noBtn = document.getElementById('noBtn');
+        // बटन को स्क्रीन के अंदर ही रखने के लिए लिमिट
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        
         noBtn.style.position = 'fixed';
         noBtn.style.left = x + 'px';
         noBtn.style.top = y + 'px';
+        noBtn.style.zIndex = "999";
 
-        // GIF और मैसेज बदलना
-        if (noCount < responses.length) {
-            document.getElementById('displayGif').src = responses[noCount].gif;
-            document.getElementById('mainText').innerText = responses[noCount].text;
+        if (noCount < data.length) {
+            document.getElementById('displayGif').src = data[noCount].gif;
+            document.getElementById('mainText').innerText = data[noCount].text;
             noCount++;
         }
     }
@@ -58,7 +58,7 @@
         document.getElementById('mainBox').innerHTML = `
             <img src="image7.gif">
             <h1 style="color: #e91e63;">I ABSOLUTELY KNEW IT!<br>I LOVE YOU! 🥰❤️</h1>
-            <p>You made me the happiest person in the world! ✨</p>
+            <p style="font-size: 16px;">You made me the happiest person! ✨</p>
         `;
     }
 </script>
