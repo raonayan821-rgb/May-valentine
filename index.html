@@ -1,51 +1,66 @@
-<<!DOCTYPE html>
-<html lang="hi">
+here <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Proposal</title>
+    <title>Valentine's Proposal</title>
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; background-color: #ffe6e6; padding: 20px; overflow-x: hidden; }
-        .container { max-width: 400px; margin: auto; }
-        img { width: 80%; border-radius: 15px; margin-bottom: 20px; }
-        h1 { color: #ff4d4d; font-size: 24px; }
-        .buttons { margin-top: 30px; position: relative; height: 150px; }
-        button { font-size: 18px; padding: 10px 20px; cursor: pointer; border-radius: 10px; border: none; font-weight: bold; }
+        body { text-align: center; font-family: 'Arial', sans-serif; background-color: #ffe6e6; padding: 20px; overflow-x: hidden; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        img { width: 100%; border-radius: 20px; margin-bottom: 20px; min-height: 250px; object-fit: contain; }
+        h1 { color: #ff4d4d; font-size: 24px; min-height: 80px; }
+        .buttons { margin-top: 20px; position: relative; height: 250px; }
+        button { font-size: 18px; padding: 12px 30px; cursor: pointer; border-radius: 12px; border: none; font-weight: bold; transition: 0.3s; }
         #yesBtn { background-color: #4CAF50; color: white; }
-        #noBtn { background-color: #f44336; color: white; position: absolute; left: 50%; }
+        #noBtn { background-color: #f44336; color: white; position: absolute; left: 50%; transform: translateX(-50%); }
     </style>
 </head>
 <body>
 
     <div id="content" class="container">
-        <img id="mainGif" src="https://raw.githubusercontent.com/raonayan821-rgb/May-valentine/main/1000113493.gif" alt="Valentine">
-        <h1 id="text">क्या आप मेरी वैलेंटाइन बनोगी? ❤️</h1>
+        <img id="mainGif" src="1000113493.gif" alt="Valentine">
+        <h1 id="text">Will you be my Valentine? ❤️</h1>
         
         <div class="buttons">
-            <button id="yesBtn" onclick="ansYes()">हाँ</button>
-            <button id="noBtn" onmouseover="moveButton()">नहीं</button>
+            <button id="yesBtn" onclick="ansYes()">YES</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">NO</button>
         </div>
     </div>
 
     <script>
+        let noCount = 0;
+        
+        // English messages for each 'No' attempt
+        const responses = [
+            { text: "Please don't say NO! My heart.... 💔", gif: "1000113494.gif" },
+            { text: "Are you really sure? Think again! 🥺", gif: "1000113495.gif" },
+            { text: "I'm going to be very sad... 😭😭", gif: "1000113496.gif" },
+            { text: "You are breaking my heart... 💔", gif: "1000113497.gif" },
+            { text: "Last chance! Please say Yes! ✨", gif: "1000113498.gif" }
+        ];
+
         function moveButton() {
-            var x = Math.random() * (window.innerWidth - 100);
-            var y = Math.random() * (window.innerHeight - 100);
+            // Button jumps to a new position
+            var x = Math.random() * (window.innerWidth - 120);
+            var y = Math.random() * (window.innerHeight - 250);
             var btn = document.getElementById('noBtn');
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
             
-            // नहीं पर जाने से 1000113494.gif (Sad) दिखेगा
-            document.getElementById('mainGif').src = "https://raw.githubusercontent.com/raonayan821-rgb/May-valentine/main/1000113494.gif";
-            document.getElementById('text').innerHTML = "प्लीज 'नहीं' मत कहो... 🥺";
+            // Change GIF and Message
+            if (noCount < responses.length) {
+                document.getElementById('mainGif').src = responses[noCount].gif;
+                document.getElementById('text').innerHTML = responses[noCount].text;
+                noCount++;
+            }
         }
 
         function ansYes() {
-            // हाँ दबाने पर 1000113499.gif (Happy/Hug) दिखेगा
+            // Final success screen
             document.getElementById('content').innerHTML = `
-                <img src="https://raw.githubusercontent.com/raonayan821-rgb/May-valentine/main/1000113499.gif">
-                <h1 style="color: #e91e63;">I Knew It! आई लव यू सो मच! 🥰❤️</h1>
-                <p style="font-size: 18px;">अब से हम हमेशा साथ रहेंगे! ✨</p>
+                <img src="1000113499.gif">
+                <h1 style="color: #e91e63;">I ABSOLUTELY KNEW IT!<br>I LOVE YOU! 🥰❤️</h1>
+                <p style="font-size: 18px; color: #555;">You just made me the happiest person in the world! ✨</p>
             `;
         }
     </script>
