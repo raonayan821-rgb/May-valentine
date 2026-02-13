@@ -1,4 +1,4 @@
-here <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@ here <!DOCTYPE html>
 <body>
 
     <div id="content" class="container">
-        <img id="mainGif" src="1000113493.gif" alt="Valentine">
+        <img id="mainGif" src="image1.gif" alt="Valentine">
         <h1 id="text">Will you be my Valentine? ❤️</h1>
         
         <div class="buttons">
@@ -30,24 +30,22 @@ here <!DOCTYPE html>
     <script>
         let noCount = 0;
         
-        // English messages for each 'No' attempt
+        // English messages for each 'No' attempt using your images
         const responses = [
-           1 { text: "Please don't say NO! My heart.... 💔", gif: "1000113494.gif" },
-           2 { text: "Are you really sure? Think again! 🥺", gif: "1000113495.gif" },
-            3 { text: "I'm going to be very sad... 😭😭", gif: "1000113496.gif" },
-          4  { text: "You are breaking my heart... 💔", gif: "1000113497.gif" },
-           5 { text: "Last chance! Please say Yes! ✨", gif: "1000113498.gif" }
+            { text: "Please don't say NO! My heart.... 💔", gif: "image2.gif" },
+            { text: "Are you really sure? Think again! 🥺", gif: "image3.gif" },
+            { text: "I'm going to be very sad... 😭😭", gif: "image4.gif" },
+            { text: "You are breaking my heart... 💔", gif: "image5.gif" },
+            { text: "Last chance! Please say Yes! ✨", gif: "image6.gif" }
         ];
 
         function moveButton() {
-            // Button jumps to a new position
             var x = Math.random() * (window.innerWidth - 120);
             var y = Math.random() * (window.innerHeight - 250);
             var btn = document.getElementById('noBtn');
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
             
-            // Change GIF and Message
             if (noCount < responses.length) {
                 document.getElementById('mainGif').src = responses[noCount].gif;
                 document.getElementById('text').innerHTML = responses[noCount].text;
@@ -56,11 +54,11 @@ here <!DOCTYPE html>
         }
 
         function ansYes() {
-            // Final success screen
+            // Success screen with image7.gif
             document.getElementById('content').innerHTML = `
-                <img src="1000113499.gif">
-                <h1 style="color: #e91e63;">I ABSOLUTELY KNEW IT!< 🥰❤️</h1>
-                <p style="font-size: 18px; color: #555;">You just made me the happiest person in the world! ✨</p>
+                <img src="image7.gif">
+                <h1 style="color: #e91e63;">I ABSOLUTELY KNEW IT!<br>I LOVE YOU! 🥰❤️</h1>
+                <p style="font-size: 18px; color: #555;">You just made me the happiest person! ✨</p>
             `;
         }
     </script>
